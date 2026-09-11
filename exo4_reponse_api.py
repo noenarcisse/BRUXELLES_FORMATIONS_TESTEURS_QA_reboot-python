@@ -64,6 +64,7 @@ def findBiggestCapacity(res) :
 findBiggestCapacity(response)
 
 # Q6
+@echo
 def find_event(response, event_id):
     body : list[dict] = response["data"]
     return next((e for e in body if e.get("id") == event_id), None)
@@ -73,6 +74,8 @@ find_event(response,13)
 
 # Q7 — Vérification manuelle : afficher PASS si le status vaut 200, sinon FAIL.
 @echo
-def displayStatusMessage(response, event_id):
+def displayStatusMessage(response):
     if response["status"] == 200 : return "PASS"
     return "FAIL"
+
+displayStatusMessage(response)
