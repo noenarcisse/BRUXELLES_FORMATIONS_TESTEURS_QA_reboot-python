@@ -1,3 +1,5 @@
+from echo import echo
+
 """
 Exercice 3 — Les données sont parfois pourries
 Les consignes sont dans enonce.md (section EXO 3).
@@ -9,11 +11,24 @@ Ton code ne doit jamais planter dessus.
 # Mission 1 & 2
 ages = ["25", "17", "bonjour", "32", "", "41", "19", "trente", "60", "  ", "28", "45"]
 
+@echo
+def moyenne(ages : list[str]) :
+    sum = 0
+    length = 0
+    for a in ages :
+        if a.isdigit() : 
+            sum += int(a)
+            length +=1
+    return sum/length
+
+moyenne(ages)
 
 # Mission 2
-def parse_ages(ages):
-    pass
+@echo
+def parse_ages(ages : list[str]):
+    return [int(a) for a in ages if a.isdigit()]
 
+parse_ages(ages)
 
 # Mission 3
 users = [
