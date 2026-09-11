@@ -75,4 +75,22 @@ def find_user_by_id(users : list[dict], user_id):
 
 # Q10
 def get_statistics(users):
-    pass
+    result = {
+        "total": 0,
+        "active": 0,
+        "inactive": 0,
+        "adults": 0,
+        "minors": 0,
+    }
+
+    for u in users :
+        if is_adult(u) : result["adults"] += 1
+        else : result["minors"] += 1
+
+        if u["active"] : result["active"] += 1
+        else : result["inactive"] +=1
+
+    result["total"] = len(users)
+    return result
+
+print(get_statistics(users))
