@@ -1,3 +1,4 @@
+from echo import echo
 """
 Exercice 4 — Vous avez reçu une réponse API
 Les consignes sont dans enonce.md (section EXO 4).
@@ -26,23 +27,52 @@ response = {
 
 
 # Q1 — Afficher le status.
+def LogStatus(res : dict) :
+    print(res["status"])
 
-
+LogStatus(response)
 # Q2 — Afficher tous les titres.
-
-
+def PrintTitles(res) :
+    body = res["data"]
+    for e in body : print(e["title"])
+PrintTitles(response)
 # Q3 — Afficher uniquement les événements actifs.
-
+def PrintActiveEvents(res) :
+    body = res["data"]
+    for e in body : 
+        if e["active"] : print(e) 
+PrintActiveEvents(response)
 
 # Q4 — Compter les événements actifs.
+# fallait plutot
+# actives = [e for e in body if e.get("active")]
 
+@echo
+def countActiveEvent(res : dict) :
+    body : list[dict] = res["data"]
+    f = lambda e : e["active"] == True
+    actives = filter(f, body)
+    return len(list(actives))
+
+countActiveEvent(response)
 
 # Q5 — Trouver l'événement ayant la plus grande capacité.
+@echo
+def findBiggestCapacity(res) :
+    return max(res["data"], key= lambda e : e["capacity"])
 
+findBiggestCapacity(response)
 
 # Q6
 def find_event(response, event_id):
-    pass
+    body : list[dict] = response["data"]
+    return next((e for e in body if e.get("id") == event_id), None)
 
+find_event(response,2)
+find_event(response,13)
 
 # Q7 — Vérification manuelle : afficher PASS si le status vaut 200, sinon FAIL.
+@echo
+def displayStatusMessage(response, event_id):
+    if response["status"] == 200 : return "PASS"
+    return "FAIL"
