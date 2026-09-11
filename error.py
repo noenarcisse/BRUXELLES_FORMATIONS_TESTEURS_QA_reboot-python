@@ -46,23 +46,33 @@ def div2(a: int, b: int):
 
 
 
-# try:
-#     print(div2(5, 'Hello'))
-# except (ValueError, TypeError) as e:
-#     print('Erreur : ', e)
+try:
+    print(div2(5, 'Hello'))
+except (ValueError, TypeError, Nope) as e:
+    print('Erreur : ', e)
 
-class RobertErr(Exception):
+# Mini exo
+
+class RobertError(Exception):
     pass
 
-def sayHelloAge(prenom : str, age : int) :
-    if prenom == "Robert" : raise RobertErr("NON ROBERT")
-    if type(prenom) != str : raise TypeError("NOOOON")
-    if type(age) != int : raise TypeError("NOOOOOOOOOOOON")
-    if age < 1 : raise ValueError("NOOOOOOOOOOOOOOOOOOOOOOOOOON")
+def say_hello_age(prenom: str, age: int):
+    # gerer erreurs + erreur presonnalisé si prenom == '???'
+    if prenom == 'Robert':
+        raise RobertError('Pas de Robert ici !')
+    if type(prenom) != str:
+        raise TypeError("Un prenom n'est pas different d'un string! ")
+    if type(age) != int:
+        raise TypeError('Un age est un int!')
+    if age < 0:
+        raise ValueError('Ton age ne peut pas être negatif!')
+    
+    return f'Bonjour {prenom} tu as {age} ans!'
 
-    print("Salut", prenom, "tu as", age, "ans")
+try:
+    print(say_hello_age('Robert', 26))
+except (ValueError, TypeError, RobertError) as e:
+    print('Erreur : ', e)
+finally:
+    print('Good Bye')
 
-try : 
-    sayHelloAge("Robert", "55")
-except Exception as e :
-    print(e)
