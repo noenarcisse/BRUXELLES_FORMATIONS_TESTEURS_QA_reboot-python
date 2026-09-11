@@ -2,6 +2,7 @@
 Exercice 1 — Reboot Python
 Les consignes sont dans enonce.md (section EXO 1).
 """
+import echo
 
 users = [
     {"id": 1,  "name": "Alice",   "age": 25, "active": True,  "role": "admin"},
@@ -26,6 +27,7 @@ users = [
 # ----- Partie A : les bases -----
 
 # Q1 — Afficher le nom de chaque utilisateur.
+
 for u in users : print(u["name"])
 
 # Q2 — Afficher uniquement les utilisateurs actifs.
@@ -47,9 +49,9 @@ for u in users :
 # ----- Partie B : les fonctions -----
 
 # Q6
+@echo.echo
 def is_adult(user):
     return user["age"] >= 18
-
 
 # Q7
 def get_active_users(users):
