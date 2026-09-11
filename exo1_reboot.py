@@ -26,40 +26,49 @@ users = [
 # ----- Partie A : les bases -----
 
 # Q1 — Afficher le nom de chaque utilisateur.
-
+for u in users : print(u["name"])
 
 # Q2 — Afficher uniquement les utilisateurs actifs.
-
+for u in users :
+    if u["active"] : print(u)
 
 # Q3 — Compter les utilisateurs actifs et afficher "<n> utilisateurs actifs".
-
+print(len([u for u in users if u["active"]]))
 
 # Q4 — Afficher uniquement les utilisateurs majeurs (18 ans ou plus).
-
+for u in users :
+    if u["age"] >= 18 :
+        print(u["name"], "est majeur(e)")
 
 # Q5 — Afficher les utilisateurs qui sont à la fois actifs ET majeurs.
-
+for u in users :
+    if u["age"] >= 18 and u["active"] : print(u) 
 
 # ----- Partie B : les fonctions -----
 
 # Q6
 def is_adult(user):
-    pass
+    return user["age"] >= 18
 
 
 # Q7
 def get_active_users(users):
-    pass
+    return [u for u in users if u["active"]]
 
 
 # Q8
 def get_active_adults(users):
-    pass
+    return [u for u in users if u["active"] and is_adult(u)]
 
 
 # Q9
-def find_user_by_id(users, user_id):
-    pass
+# find_user_by_id(users, 3)    ->  l'utilisateur Charlie
+# find_user_by_id(users, 999)  ->  None
+def find_user_by_id(users : list[dict], user_id):
+    for u in users :
+        if u["id"] == user_id :
+            return u
+    return None
 
 
 # ----- Partie C : le challenge -----
