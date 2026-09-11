@@ -46,8 +46,23 @@ def div2(a: int, b: int):
 
 
 
-try:
-    print(div2(5, 'Hello'))
-except (ValueError, TypeError) as e:
-    print('Erreur : ', e)
+# try:
+#     print(div2(5, 'Hello'))
+# except (ValueError, TypeError) as e:
+#     print('Erreur : ', e)
 
+class RobertErr(Exception):
+    pass
+
+def sayHelloAge(prenom : str, age : int) :
+    if prenom == "Robert" : raise RobertErr("NON ROBERT")
+    if type(prenom) != str : raise TypeError("NOOOON")
+    if type(age) != int : raise TypeError("NOOOOOOOOOOOON")
+    if age < 1 : raise ValueError("NOOOOOOOOOOOOOOOOOOOOOOOOOON")
+
+    print("Salut", prenom, "tu as", age, "ans")
+
+try : 
+    sayHelloAge("Robert", "55")
+except Exception as e :
+    print(e)
