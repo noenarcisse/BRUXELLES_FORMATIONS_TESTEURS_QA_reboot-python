@@ -44,6 +44,25 @@ users = [
     {"name": "Julia",   "age": "22"},
 ]
 
+@echo
+def get_valid_adults(users :  list[dict]):
 
-def get_valid_adults(users):
-    pass
+    def keyExists(d : dict, k : str) :
+        return d.get(k) != None
+
+    adultsInTheRoom = []
+    for u in users :
+
+        if not keyExists(u, "age") : continue
+        rawAge : str = str(u["age"])
+        if not rawAge.isdigit() : continue
+        validAge = int(rawAge)
+        if validAge < 18 : continue
+        # je check si le nom est dispo
+        if not keyExists(u, "name") : continue
+
+        adultsInTheRoom.append(u["name"])
+
+    return adultsInTheRoom
+    
+get_valid_adults(users)
